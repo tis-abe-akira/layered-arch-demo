@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>計算結果</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+      }
+      .result-group {
+        margin-bottom: 15px;
+      }
+      .label {
+        font-weight: bold;
+      }
+      .value {
+        margin-left: 10px;
+      }
+      .back-button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ローン計算結果</h1>
+    <div class="result-group">
+      <span class="label">元本:</span>
+      <span
+        class="value"
+        th:text="${#numbers.formatDecimal(result.principal, 0, 'COMMA', 0, 'POINT')} + '円'"
+      ></span>
+    </div>
+    <div class="result-group">
+      <span class="label">年利率:</span>
+      <span
+        class="value"
+        th:text="${#numbers.formatDecimal(result.interestRate, 1, 'COMMA', 2, 'POINT')} + '%'"
+      ></span>
+    </div>
+    <div class="result-group">
+      <span class="label">返済期間:</span>
+      <span class="value" th:text="${result.loanTermMonths} + 'ヶ月'"></span>
+    </div>
+    <div class="result-group">
+      <span class="label">毎月の返済額:</span>
+      <span
+        class="value"
+        th:text="${#numbers.formatDecimal(result.monthlyPayment, 0, 'COMMA', 0, 'POINT')} + '円'"
+      ></span>
+    </div>
+    <div class="result-group">
+      <span class="label">総返済額:</span>
+      <span
+        class="value"
+        th:text="${#numbers.formatDecimal(result.totalPayment, 0, 'COMMA', 0, 'POINT')} + '円'"
+      ></span>
+    </div>
+    <div class="result-group">
+      <span class="label">総利息:</span>
+      <span
+        class="value"
+        th:text="${#numbers.formatDecimal(result.totalInterest, 0, 'COMMA', 0, 'POINT')} + '円'"
+      ></span>
+    </div>
+    <a href="/" class="back-button">戻る</a>
+  </body>
+</html>
