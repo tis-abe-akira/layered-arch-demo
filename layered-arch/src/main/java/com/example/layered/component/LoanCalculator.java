@@ -25,9 +25,9 @@ public class LoanCalculator {
         calculation.setPrincipal(principal);
         calculation.setInterestRate(request.getInterestRate());
         calculation.setLoanTermMonths(months);
-        calculation.setMonthlyPayment(monthlyPayment);
-        calculation.setTotalPayment(totalPayment);
-        calculation.setTotalInterest(totalInterest);
+        calculation.setMonthlyPayment(Math.round(monthlyPayment));
+        calculation.setTotalPayment(Math.round(totalPayment));
+        calculation.setTotalInterest(Math.round(totalInterest));
 
         return calculation;
     }
